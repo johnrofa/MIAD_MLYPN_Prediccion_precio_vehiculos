@@ -2,6 +2,7 @@
 from flask import Flask, request, jsonify
 from flask_restx import Api, Resource, fields
 import pandas as pd
+import joblib
 from m09_model_deployment_01 import predict_proba, Modelo
 import json
 
