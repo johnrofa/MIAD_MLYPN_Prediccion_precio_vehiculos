@@ -1,12 +1,26 @@
 #!/usr/bin/python
-import joblib
 import pandas as pd
+import joblib
 import sys
 import os
 
 
 
-def Modelo(db_02):
+def Modelo(datos1):
+
+    # Leer los datos post
+    Year = datos1["Year"]
+    Mileage = datos1["Mileage"]
+    State = datos1["State"]
+    Make = datos1["Make"]
+    Model = datos1["Model"]
+    ID = 0
+
+    columnas = ['Year', 'Mileage', 'State', 'Make', 'Model', 'ID']
+    datos = [[Year, Mileage, State, Make, Model, ID]]
+
+    domain_01 = pd.DataFrame(datos, columns=columnas)
+    db_02 = domain_01.set_index('ID')
 
     print('db_02 :', db_02)
 
