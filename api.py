@@ -1,7 +1,6 @@
 #!/usr/bin/python
 from flask import Flask, request, jsonify
 from flask_restx import Api, Resource, fields
-import pandas as pd
 import joblib
 from m09_model_deployment_01 import predict_proba, Modelo
 import json
@@ -37,23 +36,7 @@ def lectura():
     print(request.data)
     datos1 = json.loads(request.data)
     print('datos1: ', datos1)
-
-    # Leer los datos post
-    Year = datos1["Year"]
-    Mileage = datos1["Mileage"]
-    State = datos1["State"]
-    Make = datos1["Make"]
-    Model = datos1["Model"]
-    ID = 0
-
-    columnas = ['Year', 'Mileage', 'State', 'Make', 'Model', 'ID']
-    datos = [[Year, Mileage, State, Make, Model, ID]]
-
-    domain_01 = pd.DataFrame(datos, columns=columnas)
-    domain_02 = domain_01.set_index('ID')
-
-    resultado= Modelo(domain_02)
-
+    resultado= Modelo(datos1)
     costovehiculo = {
         "El costo del vehiculo es ": resultado,
     }
